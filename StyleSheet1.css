@@ -1,0 +1,35 @@
+﻿body
+{
+}
+p {
+	font-size: 20px;
+}
+
+
+button {
+	color: red;
+	height: 50px;
+	width: 80px;
+	text-align: center;
+	font-size: 20px;
+}
+
+#displayP {
+	background-image: url("KnightPic.png");
+	background-size: cover;
+	background-position: center;
+	border: 5px solid black;
+	margin: 20px;
+	height: 300px;
+	width: 300px;
+}
+
+#displayM {
+	background-image: url("QMark.png");
+	background-size: cover;
+	background-position: center;
+	border: 5px solid black;
+	margin: 20px;
+	height: 300px;
+	width: 300px;
+}
