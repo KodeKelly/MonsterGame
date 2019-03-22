@@ -3,7 +3,7 @@ const monsterDisplay = document.getElementById('displayM');
 const feedback = document.getElementById('feedback');
 
 
-//CHOOSE BUTTON AND DATA
+//DATA
 
 class Monster {
   constructor(name, imageUrl, hp) {
@@ -13,17 +13,29 @@ class Monster {
   }
 }
 
-const Troll = new Monster("Troll", "url('TrollPic.jpg')", 30 );
+const Troll = new Monster("Troll", "url('TrollPic.jpg')", 30);
+const Goblin = new Moster("Goblin", "url('GoblinPic.gif')", 15);
 
 
-
+//BOTTON FUNCTIONALITY
 
 $('.buttonChoose').on('click', () => {
-	//monsterDisplay.style.backgroundImage = test;
+	//add code for random monster generator
 	monsterDisplay.style.backgroundImage = Troll.imageUrl;
 	if(monsterDisplay.style.backgroundImage = Troll.imageUrl){
 		feedback.innerHTML = Troll.name;
 	}
+});
+
+$('.buttonAttack').on('click', () => {
+    //add code for attacks
+    feedback.innerHTML = "You have attacked the " + Troll.name;
+    
+});
+
+$('.buttonRun').on('click', () => {
+    //add code for failure chance
+    feedback.innerHTML = "You have run away!";
 });
 
 
