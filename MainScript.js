@@ -2,8 +2,20 @@
 const monsterDisplay = document.getElementById('displayM');
 const feedback = document.getElementById('feedback');
 
+let inCombat = false;
+let currentMonster;
+
 
 //DATA
+
+class Player {
+    constructor(name, imageUrl, hp, level){
+        this.name = name;
+        this.imageUrl = imageUrl;
+        this.hp = hp;
+        this.level = level;
+    }
+}
 
 class Monster {
   constructor(name, imageUrl, hp) {
@@ -13,28 +25,43 @@ class Monster {
   }
 }
 
+const Hero = new Player('Sean', "url('KnightPic.png')", 15, 1);
+
 const Troll = new Monster("Troll", "url('TrollPic.jpg')", 30);
-const Goblin = new Moster("Goblin", "url('GoblinPic.gif')", 15);
+const Goblin = new Monster("Goblin", "url('GoblinPic.gif')", 15);
+const Dragon = new Monster("Dragon", "url('DragonPic.png')", 60);
+
+const baddies = [Troll, Goblin, Dragon];
 
 
-//BOTTON FUNCTIONALITY
+//BUTTON FUNCTIONALITY
 
 $('.buttonChoose').on('click', () => {
-	//add code for random monster generator
-	monsterDisplay.style.backgroundImage = Troll.imageUrl;
-	if(monsterDisplay.style.backgroundImage = Troll.imageUrl){
-		feedback.innerHTML = Troll.name;
-	}
+    if (inCombat === false) {
+        currentMonster = baddies[Math.floor(Math.random() * 3)];
+        monsterDisplay.style.backgroundImage = currentMonster.imageUrl;
+        feedback.innerHTML = currentMonster.name;
+    } else {
+        feedback.innerHTML = "You are in combat, choose Attack or Run!";
+    }
 });
 
 $('.buttonAttack').on('click', () => {
     //add code for attacks
-    feedback.innerHTML = "You have attacked the " + Troll.name;
-    
+    if (currentMonster) {
+        inCombat = true;
+        feedback.innerHTML = "You have attacked the " + currentMonster.name;
+    } else {
+        feedback.innerHTML = "You must select a Monster first."
+    }
 });
 
 $('.buttonRun').on('click', () => {
     //add code for failure chance
+
+    currentMonster = '';
+    inCombat = false;
+    monsterDisplay.style.backgroundImage = "url('QMark.png')";
     feedback.innerHTML = "You have run away!";
 });
 
